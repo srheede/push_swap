@@ -27,6 +27,7 @@ typedef struct	s_check
 	int			call;
 }				t_check;
 
+void			delmem(t_check *check, int err);
 void			issorted(t_check *check);
 int				check_flag(char *str);
 int				error_check(int argc, char **argv);

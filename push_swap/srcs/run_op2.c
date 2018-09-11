@@ -19,7 +19,7 @@ void	do_pa(t_p *p)
 		p->nb++;
 		ft_swap(&p->a[p->na - 1], &p->b[p->nb - 1]);
 		p->na--;
-		ft_putstr("pa\n");
+		ft_putstr("pb\n");
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
@@ -37,7 +37,7 @@ void	do_pb(t_p *p)
 		p->na++;
 		ft_swap(&p->a[p->na - 1], &p->b[p->nb - 1]);
 		p->nb--;
-		ft_putstr("pb\n");
+		ft_putstr("pa\n");
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
@@ -63,7 +63,7 @@ void	do_ra(t_p *p)
 			i++;
 		}
 		p->a[p->na - 1] = tmp;
-		ft_putstr("ra\n");
+		ft_putstr("rra\n");
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
@@ -89,7 +89,7 @@ void	do_rb(t_p *p)
 			i++;
 		}
 		p->b[p->nb - 1] = tmp;
-		ft_putstr("rb\n");
+		ft_putstr("rrb\n");
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
@@ -112,7 +112,7 @@ void	do_rr(t_p *p)
 		tmp = p->a[0];
 		p->a++;
 		p->a[p->na - 1] = tmp;
-		ft_putstr("rr\n");
+		ft_putstr("rrr\n");
 		if (p->debug)
 			putstacks(p);
 		if (p->step)

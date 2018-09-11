@@ -19,7 +19,10 @@ void	delmem(t_check *check, int err)
 	if (check->b)
 		free(check->b);
 	if (err)
+	{
 		ft_putstr("Error\n");
+		exit(1);
+	}
 }
 
 void	get_ops(t_check *check)
@@ -77,18 +80,12 @@ int		main(int argc, char **argv)
 		if (!check.file)
 		{
 			if (error_check(argc, argv) || read_input(argc, argv, &check))
-			{
 				delmem(&check, 1);
-				return (-1);
-			}
 		}
 		else
 		{
 			if (!read_file(argv[1], &check))
-			{
 				delmem(&check, 1);
-				return (-1);
-			}
 		}
 		get_ops(&check);
 	}

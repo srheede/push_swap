@@ -34,24 +34,26 @@ void	run_op(t_check *check)
 {
 	if (!ft_strcmp(check->buffer, "sa"))
 		do_sa(check);
-	if (!ft_strcmp(check->buffer, "sb"))
+	else if (!ft_strcmp(check->buffer, "sb"))
 		do_sb(check);
-	if (!ft_strcmp(check->buffer, "ss"))
+	else if (!ft_strcmp(check->buffer, "ss"))
 		do_ss(check);
-	if (!ft_strcmp(check->buffer, "pa"))
+	else if (!ft_strcmp(check->buffer, "pb"))
 		do_pa(check);
-	if (!ft_strcmp(check->buffer, "pb"))
+	else if (!ft_strcmp(check->buffer, "pa"))
 		do_pb(check);
-	if (!ft_strcmp(check->buffer, "ra"))
+	else if (!ft_strcmp(check->buffer, "ra"))
 		do_ra(check);
-	if (!ft_strcmp(check->buffer, "rb"))
+	else if (!ft_strcmp(check->buffer, "rb"))
 		do_rb(check);
-	if (!ft_strcmp(check->buffer, "rr"))
+	else if (!ft_strcmp(check->buffer, "rr"))
 		do_rr(check);
-	if (!ft_strcmp(check->buffer, "rra"))
+	else if (!ft_strcmp(check->buffer, "rra"))
 		do_rra(check);
-	if (!ft_strcmp(check->buffer, "rrb"))
+	else if (!ft_strcmp(check->buffer, "rrb"))
 		do_rrb(check);
-	if (!ft_strcmp(check->buffer, "rrr"))
+	else if (!ft_strcmp(check->buffer, "rrr"))
 		do_rrr(check);
+	else
+		delmem(check, 1);
 }

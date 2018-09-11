@@ -27,7 +27,7 @@ void	do_rra(t_p *p)
 			i--;
 		}
 		p->a[0] = tmp;
-		ft_putstr("rra\n");
+		ft_putstr("ra\n");
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
@@ -53,7 +53,7 @@ void	do_rrb(t_p *p)
 			i--;
 		}
 		p->b[0] = tmp;
-		ft_putstr("rrb\n");
+		ft_putstr("rb\n");
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
@@ -66,7 +66,7 @@ void	do_rrb(t_p *p)
 
 void	print_rrr(t_p *p)
 {
-	ft_putstr("rrr\n");
+	ft_putstr("rr\n");
 	if (p->debug)
 		putstacks(p);
 	if (p->step)

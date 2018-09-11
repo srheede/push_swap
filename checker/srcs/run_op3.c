@@ -35,7 +35,7 @@ void	putstacks(t_check check)
 	ft_putchar_fd('\n', 2);
 }
 
-void	do_rra(t_check *check)
+void	do_ra(t_check *check)
 {
 	int	i;
 	int	tmp;
@@ -53,7 +53,7 @@ void	do_rra(t_check *check)
 	}
 }
 
-void	do_rrb(t_check *check)
+void	do_rb(t_check *check)
 {
 	int	i;
 	int	tmp;
@@ -71,8 +71,8 @@ void	do_rrb(t_check *check)
 	}
 }
 
-void	do_rrr(t_check *check)
+void	do_rr(t_check *check)
 {
-	do_rra(check);
-	do_rrb(check);
+	do_ra(check);
+	do_rb(check);
 }

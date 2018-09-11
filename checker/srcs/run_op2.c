@@ -32,7 +32,7 @@ void	do_pb(t_check *check)
 	}
 }
 
-void	do_ra(t_check *check)
+void	do_rra(t_check *check)
 {
 	int	i;
 	int	tmp;
@@ -50,7 +50,7 @@ void	do_ra(t_check *check)
 	}
 }
 
-void	do_rb(t_check *check)
+void	do_rrb(t_check *check)
 {
 	int	i;
 	int	tmp;
@@ -68,9 +68,9 @@ void	do_rb(t_check *check)
 	}
 }
 
-void	do_rr(t_check *check)
+void	do_rrr(t_check *check)
 {
 	check->call = 0;
-	do_ra(check);
-	do_rb(check);
+	do_rra(check);
+	do_rrb(check);
 }
