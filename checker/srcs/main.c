@@ -14,8 +14,10 @@
 
 void	delmem(t_check *check, int err)
 {
-	free(check->a);
-	free(check->b);
+	if (check->a)
+		free(check->a);
+	if (check->b)
+		free(check->b);
 	if (err)
 		ft_putstr("Error\n");
 }
@@ -29,18 +31,24 @@ void	get_ops(t_check *check)
 		run_op(check);
 		if (check->debug)
 			putstacks(*check);
+		ft_strdel(&check->buffer);
 	}
-	issorted(*check);
+	if (check->buffer)
+		ft_strdel(&check->buffer);
+	issorted(check);
 	delmem(check, 0);
 }
 
 void	set_zero(t_check *check)
 {
+	check->buffer = NULL;
+	check->a = NULL;
+	check->b = NULL;
 	check->n_a = 0;
 	check->n_b = 0;
-	check->colour = 0;
 	check->debug = 0;
-	check->visualize = 0;
+	check->file = 0;
+	check->call = 0;
 }
 
 void	read_flags(int argc, char **argv, t_check *check)
@@ -51,8 +59,6 @@ void	read_flags(int argc, char **argv, t_check *check)
 	set_zero(check);
 	while (i < argc)
 	{
-		if (!ft_strcmp(argv[i], "-c"))
-			check->colour = 1;
 		if (!ft_strcmp(argv[i], "-d"))
 			check->debug = 1;
 		if (!ft_strcmp(argv[i], "-f"))

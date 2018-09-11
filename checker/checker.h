@@ -20,18 +20,14 @@ typedef struct	s_check
 	char		*buffer;
 	int			*a;
 	int			*b;
-	int			*a_ptr;
-	int			*b_ptr;
 	int			n_a;
 	int			n_b;
-	int			colour;
 	int			debug;
 	int			file;
-	int			visualize;
 	int			call;
 }				t_check;
 
-void			issorted(t_check check);
+void			issorted(t_check *check);
 int				check_flag(char *str);
 int				error_check(int argc, char **argv);
 void			putstacks(t_check check);

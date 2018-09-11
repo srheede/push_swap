@@ -21,7 +21,10 @@ void	do_sa(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }
 
@@ -34,7 +37,10 @@ void	do_sb(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }
 
@@ -48,6 +54,9 @@ void	do_ss(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }

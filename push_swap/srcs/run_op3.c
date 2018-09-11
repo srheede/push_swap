@@ -31,7 +31,10 @@ void	do_rra(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }
 
@@ -54,7 +57,10 @@ void	do_rrb(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }
 
@@ -64,7 +70,10 @@ void	print_rrr(t_p *p)
 	if (p->debug)
 		putstacks(p);
 	if (p->step)
+	{
 		get_next_line(0, &p->buffer);
+		ft_strdel(&p->buffer);
+	}
 }
 
 void	do_rrr(t_p *p)

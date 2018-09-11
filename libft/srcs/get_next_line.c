@@ -12,65 +12,57 @@
 
 #include "../libft.h"
 
-char			*ft_stock_the_new_line(char *str)
+static int	ft_new_line(char **s, char **line, int fd, int ret)
 {
-	int			i;
-	int			len;
-	char		*new;
+	char	*tmp;
+	int		len;
 
-	i = 0;
 	len = 0;
-	while (str[len++])
-		;
-	if (!(new = (char *)malloc(sizeof(*new) * len + 1)))
-		return (NULL);
-	while (i < len && str[i] != '\n')
+	while (s[fd][len] != '\n' && s[fd][len] != '\0')
+		len++;
+	if (s[fd][len] == '\n')
 	{
-		new[i] = str[i];
-		i++;
+		*line = ft_strsub(s[fd], 0, len);
+		tmp = ft_strdup(s[fd] + len + 1);
+		free(s[fd]);
+		s[fd] = tmp;
+		if (s[fd][0] == '\0')
+			ft_strdel(&s[fd]);
 	}
-	new[i] = '\0';
-	return (new);
-}
-
-static char		*ft_clean_new(char *str)
-{
-	char		*new;
-	int			i;
-
-	i = 0;
-	while (str[i] != '\n' && str[i])
-		i++;
-	if ((str[i] && !str[i + 1]) || !str[i])
-		return (NULL);
-	new = ft_strdup(str + i + 1);
-	return (new);
-}
-
-int				get_next_line(const int fd, char **line)
-{
-	char		buff[BUFF_SIZE + 1];
-	int			ret;
-	static char	*new;
-
-	if (!new)
-		new = ft_strnew(1);
-	if (BUFF_SIZE < 0 || !line || fd > MAX_SIZE_FD || fd < 0)
-		return (-1);
-	ret = 2;
-	while (!(ft_strchr(new, '\n')))
+	else if (s[fd][len] == '\0')
 	{
-		ret = read(fd, buff, BUFF_SIZE);
-		if (ret == -1)
-			return (-1);
-		buff[ret] = '\0';
-		new = ft_strjoin(new, buff);
-		if (ret == 0 && *new == '\0')
-			return (0);
-		if (ret == 0)
+		if (ret == BUFF_SIZE)
+			return (get_next_line(fd, line));
+		*line = ft_strdup(s[fd]);
+		ft_strdel(&s[fd]);
+	}
+	return (1);
+}
+
+int			get_next_line(const int fd, char **line)
+{
+	static char	*s[BUFF_SIZE + 1];
+	char		buf[BUFF_SIZE + 1];
+	char		*tmp;
+	int			ret;
+
+	if (fd < 0 || !line)
+		return (-1);
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	{
+		buf[ret] = '\0';
+		if (s[fd] == NULL)
+			s[fd] = ft_strnew(1);
+		tmp = ft_strjoin(s[fd], buf);
+		free(s[fd]);
+		s[fd] = tmp;
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	*line = ft_stock_the_new_line(new);
-	new = ft_clean_new(new);
-	return (1);
+	if (ret < 0)
+		return (-1);
+	else if (ret == 0 && (s[fd] == NULL || s[fd][0] == '\0'))
+		return (0);
+	return (ft_new_line(s, line, fd, ret));
+	buf[ret] = '\0';
 }

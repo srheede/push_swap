@@ -26,6 +26,33 @@ int		position(t_v *v, char *str)
 	return (i);
 }
 
+void	read_a(t_v *v, char *buffer)
+{
+	if (!v->a_list)
+	{
+		v->a_list = (t_list *)malloc(sizeof(t_list));
+		v->b_list = (t_list *)malloc(sizeof(t_list));
+		v->tmp_a = v->a_list;
+		v->tmp_b = v->b_list;
+	}
+	if (!v->sorted)
+		sort(v, buffer);
+	if (ft_strlen(buffer) > 7)
+	{
+		v->a_list->next = ft_lstnew(buffer + 8, ft_strlen(buffer) - 7);
+		v->a_list = v->a_list->next;
+	}
+}
+
+void	read_b(t_v *v, char *buffer)
+{
+	if (ft_strlen(buffer) > 7)
+	{
+		v->b_list->next = ft_lstnew(buffer + 8, ft_strlen(buffer) - 7);
+		v->b_list = v->b_list->next;
+	}
+}
+
 void	read_input(t_v *v)
 {
 	char	*buffer;
@@ -33,22 +60,13 @@ void	read_input(t_v *v)
 	while (get_next_line(0, &buffer))
 	{
 		if (ft_strchr(buffer, 'A'))
-		{
-			if (!v->sorted)
-				sort(v, buffer);
-			v->a_list->next = ft_lstnew(buffer + 8, ft_strlen(buffer + 8));
-			v->a_list = v->a_list->next;
-		}
+			read_a(v, buffer);
 		if (ft_strchr(buffer, 'B'))
-		{
-			if (buffer + 9)
-			{
-				v->b_list->next = ft_lstnew(buffer + 8, ft_strlen(buffer + 8));
-				v->b_list = v->b_list->next;
-			}
-		}
+			read_b(v, buffer);
 		ft_strdel(&buffer);
 	}
-	v->a_list = v->tmp_a->next;
-	v->b_list = v->tmp_b->next;
+	if (v->tmp_a)
+		v->a_list = v->tmp_a->next;
+	if (v->tmp_b)
+		v->b_list = v->tmp_b->next;
 }

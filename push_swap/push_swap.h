@@ -29,7 +29,6 @@ typedef struct	s_p
 	int			*b;
 	int			na;
 	int			nb;
-	int			colour;
 	int			debug;
 	int			end;
 	int			file;

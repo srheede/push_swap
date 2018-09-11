@@ -17,11 +17,11 @@ int		check_flag(char *str)
 	int	err;
 
 	err = 0;
-	if (!ft_strcmp(str, "-c"))
-		err++;
 	if (!ft_strcmp(str, "-d"))
 		err++;
 	if (!ft_strcmp(str, "-e"))
+		err++;
+	if (!ft_strcmp(str, "-f"))
 		err++;
 	if (!ft_strcmp(str, "-s"))
 		err++;
@@ -55,17 +55,17 @@ int		check_arg(int argc, char **argv, char *str)
 	char *number;
 
 	number = ft_itoa(ft_atoi(str));
-	if (!check_flag(str))
+	if (!check_flag(str) && strcmp(str, number))
 	{
-		if (strcmp(str, number))
-		{
-			ft_strdel(&number);
-			return (1);
-		}
 		ft_strdel(&number);
+		return (1);
 	}
 	else if (isdouble(argc, argv))
+	{
+		ft_strdel(&number);
 		return (1);
+	}
+	ft_strdel(&number);
 	return (0);
 }
 

@@ -23,7 +23,10 @@ void	do_pa(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }
 
@@ -38,7 +41,10 @@ void	do_pb(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }
 
@@ -61,7 +67,10 @@ void	do_ra(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }
 
@@ -84,7 +93,10 @@ void	do_rb(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }
 
@@ -104,6 +116,9 @@ void	do_rr(t_p *p)
 		if (p->debug)
 			putstacks(p);
 		if (p->step)
+		{
 			get_next_line(0, &p->buffer);
+			ft_strdel(&p->buffer);
+		}
 	}
 }

@@ -38,7 +38,6 @@ char		**ft_strsplit(char const *s, char c)
 	char	**arr;
 	int		i;
 	int		j;
-
 	if (!s)
 		return (NULL);
 	i = 0;

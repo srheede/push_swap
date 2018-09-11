@@ -91,9 +91,12 @@ void	part(t_p *p)
 {
 	int	*sorted;
 
+	sorted = NULL;
 	sorted = ft_arrdup(p->a, p->na);
 	p->tmp = p->na - 1;
 	quicksort(sorted, 0, p->na - 1);
 	p->max = 0;
 	partition(sorted, p->na, p);
+	if (sorted)
+		free(sorted);
 }

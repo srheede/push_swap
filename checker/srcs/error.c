@@ -12,18 +12,18 @@
 
 #include "../checker.h"
 
-void	issorted(t_check check)
+void	issorted(t_check *check)
 {
 	int	i;
 	int	err;
 
 	err = 0;
-	if (check.n_b)
+	if (check->n_b)
 		err++;
 	i = 0;
-	while (i < check.n_a)
+	while (i < check->n_a - 1)
 	{
-		if (check.a[i] < check.a[i + 1])
+		if (check->a[i] < check->a[i + 1])
 			err++;
 		i++;
 	}
@@ -35,9 +35,9 @@ int		check_flag(char *str)
 	int	err;
 
 	err = 0;
-	if (!ft_strcmp(str, "-c"))
-		err++;
 	if (!ft_strcmp(str, "-d"))
+		err++;
+	if (!ft_strcmp(str, "-f"))
 		err++;
 	if (!err)
 		return (0);
@@ -69,17 +69,17 @@ int		check_arg(int argc, char **argv, char *str)
 	char *number;
 
 	number = ft_itoa(ft_atoi(str));
-	if (!check_flag(str))
+	if (!check_flag(str) && strcmp(str, number))
 	{
-		if (strcmp(str, number))
-		{
-			ft_strdel(&number);
-			return (1);
-		}
 		ft_strdel(&number);
+		return (1);
 	}
 	else if (isdouble(argc, argv))
+	{
+		ft_strdel(&number);
 		return (1);
+	}
+	ft_strdel(&number);
 	return (0);
 }
 

@@ -38,7 +38,6 @@ void	sort(t_v *v, char *buffer)
 
 int		hook(int key, t_v *v)
 {
-	(void)v;
 	if (key == 76)
 	{
 		if (v->b_list->next)
@@ -48,7 +47,7 @@ int		hook(int key, t_v *v)
 		}
 	}
 	if (key == 53)
-		exit(1);
+		exit(0);
 	return (0);
 }
 
@@ -89,10 +88,6 @@ int		main(void)
 	t_v	v;
 
 	reset(&v);
-	v.a_list = (t_list *)malloc(sizeof(t_list));
-	v.b_list = (t_list *)malloc(sizeof(t_list));
-	v.tmp_a = v.a_list;
-	v.tmp_b = v.b_list;
 	read_input(&v);
 	v.disp = mlx_init();
 	v.win = mlx_new_window(v.disp, 900, 900, "push_swap");

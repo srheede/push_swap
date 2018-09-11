@@ -83,11 +83,22 @@ int		display(t_v *v)
 	char	**arr;
 
 	mlx_clear_window(v->disp, v->win);
-	arr = ft_strsplit(v->a_list->content, ' ');
-	display_a(v, arr);
-	ft_arrdel(arr);
-	arr = ft_strsplit(v->b_list->content, ' ');
-	display_b(v, arr);
-	ft_arrdel(arr);
+	if (v->a_list)
+	{
+		arr = ft_strsplit(v->a_list->content, ' ');
+		display_a(v, arr);
+		ft_arrdel(arr);
+	}
+	if (v->b_list)
+	{
+		arr = ft_strsplit(v->b_list->content, ' ');
+		display_b(v, arr);
+		ft_arrdel(arr);
+	}
+	if (v->a_list->next)
+	{
+		v->a_list = v->a_list->next;
+		v->b_list = v->b_list->next;
+	}
 	return (0);
 }

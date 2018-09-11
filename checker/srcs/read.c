@@ -53,7 +53,6 @@ int		read_file(char *name, t_check *check)
 	char	**arr;
 
 	fd = open(name, O_RDONLY);
-	buffer = NULL;
 	if (fd == -1)
 		return (0);
 	get_next_line(fd, &buffer);
@@ -86,7 +85,9 @@ void	read_arg(int argc, char **argv, t_check *check)
 int		read_input(int argc, char **argv, t_check *check)
 {
 	char	**arr;
+	int		i;
 
+	i = 0;
 	arr = ft_strsplit(argv[1], ' ');
 	if (ft_arrlen(arr) > 1)
 	{

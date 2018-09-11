@@ -50,9 +50,6 @@ void	do_rra(t_check *check)
 			i--;
 		}
 		check->a[0] = tmp;
-		if (check->debug && check->call)
-			ft_putstr_fd("rra\n", 2);
-		check->call = 1;
 	}
 }
 
@@ -71,17 +68,11 @@ void	do_rrb(t_check *check)
 			i--;
 		}
 		check->b[0] = tmp;
-		if (check->debug && check->call)
-			ft_putstr_fd("rrb\n", 2);
-		check->call = 1;
 	}
 }
 
 void	do_rrr(t_check *check)
 {
-	check->call = 0;
 	do_rra(check);
 	do_rrb(check);
-	if (check->debug)
-		ft_putstr_fd("rrr\n", 2);
 }

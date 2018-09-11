@@ -19,7 +19,6 @@ void	set_zero(t_p *p)
 	p->b = NULL;
 	p->na = 0;
 	p->nb = 0;
-	p->colour = 0;
 	p->debug = 0;
 	p->end = 0;
 	p->file = 0;
@@ -46,8 +45,6 @@ void	read_flags(int argc, char **argv, t_p *p)
 	set_zero(p);
 	while (i < argc)
 	{
-		if (!ft_strcmp(argv[i], "-c"))
-			p->colour = 1;
 		if (!ft_strcmp(argv[i], "-d"))
 			p->debug = 1;
 		if (!ft_strcmp(argv[i], "-e"))
@@ -70,8 +67,10 @@ void	sort(t_p *p)
 
 void	delmem(t_p *p, int err)
 {
-	free(p->a);
-	free(p->b);
+	if (p->a)
+		free(p->a);
+	if (p->b)
+		free(p->b);
 	if (err)
 		ft_putstr("Error\n");
 }

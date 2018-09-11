@@ -16,27 +16,18 @@ void	do_sa(t_check *check)
 {
 	if (check->n_a > 1)
 		ft_swap(&check->a[check->n_a - 1], &check->a[check->n_a - 2]);
-	if (check->debug && check->call)
-		ft_putstr_fd("sa\n", 2);
-	check->call = 1;
 }
 
 void	do_sb(t_check *check)
 {
 	if (check->n_b > 1)
 		ft_swap(&check->b[check->n_b - 1], &check->b[check->n_b - 2]);
-	if (check->debug && check->call)
-		ft_putstr_fd("sb\n", 2);
-	check->call = 1;
 }
 
 void	do_ss(t_check *check)
 {
-	check->call = 0;
 	do_sa(check);
 	do_sb(check);
-	if (check->debug)
-		ft_putstr_fd("ss\n", 2);
 }
 
 void	run_op(t_check *check)
