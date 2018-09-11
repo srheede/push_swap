@@ -62,6 +62,7 @@ void	reset(t_v *v)
 	v->b_list = NULL;
 	v->tmp_a = NULL;
 	v->tmp_b = NULL;
+	v->step = 0;
 }
 
 void	clear(t_v *v)
@@ -83,11 +84,14 @@ void	clear(t_v *v)
 	free(v->sorted);
 }
 
-int		main(void)
+int		main(int argc, char **argv)
 {
 	t_v	v;
 
 	reset(&v);
+	if (argc > 1)
+		if (!ft_strcmp(argv[1], "-s"))
+			v.step = 1;
 	read_input(&v);
 	v.disp = mlx_init();
 	v.win = mlx_new_window(v.disp, 900, 900, "push_swap");

@@ -16,7 +16,6 @@ char	*ft_strnew(size_t size)
 {
 	char *buffer;
 
-
 	buffer = (char *)malloc(size + 1);
 	if (buffer == NULL)
 		return (NULL);

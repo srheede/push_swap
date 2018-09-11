@@ -27,6 +27,7 @@ typedef struct		s_v
 	t_list			*b_list;
 	t_list			*tmp_a;
 	t_list			*tmp_b;
+	int				step;
 }					t_v;
 
 void				sort(t_v *v, char *buffer);

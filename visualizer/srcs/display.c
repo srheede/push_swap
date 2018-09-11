@@ -95,7 +95,7 @@ int		display(t_v *v)
 		display_b(v, arr);
 		ft_arrdel(arr);
 	}
-	if (v->a_list->next)
+	if (v->a_list->next && !v->step)
 	{
 		v->a_list = v->a_list->next;
 		v->b_list = v->b_list->next;

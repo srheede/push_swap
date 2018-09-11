@@ -30,7 +30,7 @@ int		split_input(char **arr, t_p *p)
 	while (i >= 0)
 	{
 		str = ft_itoa(ft_atoi(arr[i]));
-		if (strcmp(arr[i], str))
+		if (strcmp(arr[i], str) || isdouble(i + 1, arr))
 		{
 			if (arr)
 				ft_arrdel(arr);
